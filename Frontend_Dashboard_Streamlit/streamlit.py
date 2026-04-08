@@ -8,7 +8,7 @@ st.set_page_config(page_title="NIFTY Dashboard", layout="wide")
 
 
 MODEL_PATH = r"pkl model/xgb_nifty_model.pkl"   
-DATA_PATH = r"C:\Users\ADMIN\Downloads\NIFTY50_all.csv"   
+DATA_PATH = "NIFTY50_all.zip"   
 
 FEATURE_COLS = ["MA_5", "MA_10", "lag_1", "lag_2", "lag_3", "volatility", "Volume"]
 
@@ -30,11 +30,19 @@ def load_model(path):
 
 
 @st.cache_data
-def load_data(path):
-    if path.endswith(".csv"):
-        df = pd.read_csv(path)
+def load_data(file_to_open): # 'file_to_open' is the placeholder
+    if file_to_open.endswith(".zip"):
+        return pd.read_csv(file_to_open, compression='zip')
+    elif file_to_open.endswith(".csv"):
+        return pd.read_csv(file_to_open)
     else:
-        df = pd.read_excel(path)
+        return pd.read_excel(file_to_open)
+
+# Pass the DATA_PATH variable into the function
+df = load_data(DATA_PATH)
+
+# Do the same for the model
+model, features = load_model(MODEL_PATH)
 
     required = {"Date", "Close", "Volume"}
     missing = required - set(df.columns)
