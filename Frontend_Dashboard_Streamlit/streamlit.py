@@ -7,8 +7,8 @@ import numpy as np
 st.set_page_config(page_title="NIFTY Dashboard", layout="wide")
 
 
-MODEL_PATH = r"C:\Users\ADMIN\Downloads\pkl model\xgb_nifty_model.pkl"   # your saved model
-DATA_PATH = r"C:\Users\ADMIN\Downloads\NIFTY50_all.csv"     # <-- put your CSV path here
+MODEL_PATH = r"pkl model/xgb_nifty_model.pkl"   
+DATA_PATH = r"C:\Users\ADMIN\Downloads\NIFTY50_all.csv"   
 
 FEATURE_COLS = ["MA_5", "MA_10", "lag_1", "lag_2", "lag_3", "volatility", "Volume"]
 
