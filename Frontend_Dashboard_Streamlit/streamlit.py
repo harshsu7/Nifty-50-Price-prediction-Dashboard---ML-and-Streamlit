@@ -6,8 +6,7 @@ import numpy as np
 
 st.set_page_config(page_title="NIFTY Dashboard", layout="wide")
 
-# --- PATHS ---
-# Ensure "pkl model" folder exists in your GitHub repo
+
 MODEL_PATH = "pkl model/xgb_nifty_model.pkl"   
 DATA_PATH = "NIFTY50_all.zip"   
 
@@ -37,7 +36,7 @@ def load_data(file_to_open):
     else:
         df = pd.read_excel(file_to_open)
     
-    # --- Data Cleaning Logic (Now correctly inside the function) ---
+
     required = {"Date", "Close", "Volume"}
     missing = required - set(df.columns)
     if missing:
